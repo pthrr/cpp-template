@@ -14,17 +14,14 @@ message(STATUS "${PROJECT_NAME} version is: ${VERSION}")
 
 add_compile_options(-Wall -Wextra -pedantic)
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  add_compile_options(-g3 -O0 -gsplit-dwarf)
-
-  if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_options(-g3 -O0 -gsplit-dwarf)
     add_link_options(-Wl,-g -fuse-ld=gold)
   else()
-    add_link_options(-Wl,-g)
+    add_compile_options(-O3 -DNDEBUG)
+    add_link_options(-flto)
   endif()
-else()
-  add_compile_options(-O3 -DNDEBUG)
-  add_link_options(-flto)
 endif()
 
 find_package(glog REQUIRED)
