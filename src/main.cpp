@@ -1,10 +1,4 @@
-#include <iostream>
-
-auto print( const char* msg ) -> int
-{
-    std::cout << msg << std::endl;
-    return 0;
-}
+#include "print.hpp"
 
 auto main() -> int
 {

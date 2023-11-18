@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
-#include "../src/main.cpp"
+#include "../src/print.hpp"
 
-TEST( main, print )
+TEST( basic, print )
 {
-    auto rv = print( "My message" );
-    ASSERT_TRUE( rv == 0 );
+    auto rval = print( "My message" );
+    ASSERT_TRUE( rval == 0 );
 }
