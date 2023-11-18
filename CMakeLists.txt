@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
-cmake_policy(SET CMP0100 NEW) # handle .hh files
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/conan)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
@@ -13,11 +12,25 @@ project(
   DESCRIPTION "My project")
 message(STATUS "${PROJECT_NAME} version is: ${VERSION}")
 
+add_compile_options(-Wall -Wextra -pedantic)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_compile_options(-g3 -O0 -gsplit-dwarf)
+
+  if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    add_link_options(-Wl,-g -fuse-ld=gold)
+  else()
+    add_link_options(-Wl,-g)
+  endif()
+else()
+  add_compile_options(-O3 -DNDEBUG)
+  add_link_options(-flto)
+endif()
+
 find_package(glog REQUIRED)
 
-file(GLOB_RECURSE ${PROJECT_NAME}_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc)
-file(GLOB_RECURSE ${PROJECT_NAME}_HEADER CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hh)
-file(GLOB_RECURSE ${PROJECT_NAME}_TESTS CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cc)
+file(GLOB_RECURSE ${PROJECT_NAME}_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE ${PROJECT_NAME}_HEADER CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp)
 
 add_subdirectory(external)
 add_subdirectory(src)

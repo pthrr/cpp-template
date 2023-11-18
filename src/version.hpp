@@ -2,7 +2,7 @@
 
 #include <format>
 
-#include "types.hh"
+#include "types.hpp"
 
 // TODO: use constexpr
 #define VERSION_MAJOR 0

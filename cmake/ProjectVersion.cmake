@@ -1,4 +1,4 @@
-file(READ "${CMAKE_CURRENT_SOURCE_DIR}/src/version.hh" VERSION_FILE)
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/src/version.hpp" VERSION_FILE)
 
 string(REGEX MATCH "#define VERSION_MAJOR ([0-9]+)" _ ${VERSION_FILE})
 set(VERSION_MAJOR ${CMAKE_MATCH_1})
