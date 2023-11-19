@@ -12,18 +12,6 @@ project(
   DESCRIPTION "My project")
 message(STATUS "${PROJECT_NAME} version is: ${VERSION}")
 
-add_compile_options(-Wall -Wextra -pedantic)
-
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_compile_options(-g3 -O0 -gsplit-dwarf)
-    add_link_options(-Wl,-g -fuse-ld=gold)
-  else()
-    add_compile_options(-O3 -DNDEBUG)
-    add_link_options(-flto)
-  endif()
-endif()
-
 find_package(glog REQUIRED)
 
 file(GLOB_RECURSE ${PROJECT_NAME}_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
