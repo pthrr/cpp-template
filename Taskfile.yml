@@ -22,8 +22,8 @@ tasks:
     internal: true
     platforms: [linux]
     cmds:
-      - conan install . --output-folder=conan --build=missing -s build_type=Release --profile:build=profiles/gcc12_x64 --profile:host=profiles/gcc12_x64
-      - cmake -DCMAKE_TOOLCHAIN_FILE=conan_toolchain -DCMAKE_BUILD_TYPE=Release -S . -B build
+      - conan install . --build=missing -s build_type=Release --profile:build=profiles/gcc12_x64 --profile:host=profiles/gcc12_x64
+      - cmake --preset conan-release
     sources:
       - CMakeLists.txt
       - src/**/CMakeLists.txt
@@ -38,8 +38,8 @@ tasks:
     internal: true
     platforms: [linux]
     cmds:
-      - conan install . --output-folder=conan --build=missing -s build_type=Debug --profile:build=profiles/gcc12_x64 --profile:host=profiles/gcc12_x64
-      - cmake -DCMAKE_TOOLCHAIN_FILE=conan_toolchain -DCMAKE_BUILD_TYPE=Debug -S . -B build
+      - conan install . --build=missing -s build_type=Debug --profile:build=profiles/gcc12_x64 --profile:host=profiles/gcc12_x64
+      - cmake --preset conan-debug
     sources:
       - CMakeLists.txt
       - src/**/CMakeLists.txt
@@ -61,23 +61,31 @@ tasks:
   build_debug:
     cmds:
       - task: config_debug
-      - cmd: cmake --build build
+      - cmd: cmake --build build/Debug
         platforms: [linux]
 
   build:
     cmds:
       - task: config
-      - cmd: cmake --build build
+      - cmd: cmake --build build/Release
         platforms: [linux]
 
   pack:
     cmds:
+      - task: build
       - cmd: cd build && cpack -B install -C Release
 
   test:
     cmds:
-      - cmd: ctest --test-dir build/tests --output-on-failure
+      - task: build_debug
+      - cmd: ctest --test-dir build/Debug/tests --output-on-failure
+
+  run_debug:
+    cmds:
+      - task: build_debug
+      - cmd: build/Debug/src/my_project
 
   run:
     cmds:
-      - cmd: build/src/my_project
+      - task: build
+      - cmd: build/Release/src/my_project

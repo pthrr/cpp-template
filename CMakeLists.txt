@@ -8,11 +8,12 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/ProjectSettings.cmake)
 project(
   my_project
   LANGUAGES C CXX
-  VERSION ${VERSION}
+  VERSION ${PROJECT_VERSION}
   DESCRIPTION "My project")
-message(STATUS "${PROJECT_NAME} version is: ${VERSION}")
+message(STATUS "${PROJECT_NAME} version is: ${PROJECT_VERSION}")
 
-find_package(glog REQUIRED)
+find_package(spdlog REQUIRED)
+find_package(Catch2 REQUIRED)
 
 file(GLOB_RECURSE ${PROJECT_NAME}_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE ${PROJECT_NAME}_HEADER CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp)
