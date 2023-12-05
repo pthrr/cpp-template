@@ -32,7 +32,7 @@ tasks:
       - external/**/CMakeLists.txt
       - cmake/**/CMakeLists.txt
     generates:
-      - build/compile_commands.json
+      - build/Release/compile_commands.json
 
   config_linux_debug:
     internal: true
@@ -48,7 +48,7 @@ tasks:
       - external/**/CMakeLists.txt
       - cmake/**/CMakeLists.txt
     generates:
-      - build/compile_commands.json
+      - build/Debug/compile_commands.json
 
   config_debug:
     cmds:
