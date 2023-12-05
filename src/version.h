@@ -5,13 +5,14 @@
 #include "types.hpp"
 
 // TODO: use constexpr
-#define VERSION_MAJOR 0
-#define VERSION_MINOR 1
-#define VERSION_PATCH 0
+#define PROJECT_VERSION_MAJOR 0
+#define PROJECT_VERSION_MINOR 1
+#define PROJECT_VERSION_PATCH 0
 
 namespace my_project {
 
-static constexpr inline version_t VERSION{ VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH };
+static constexpr inline version_t PROJECT_VERSION{
+    PROJECT_VERSION_MAJOR, PROJECT_VERSION_MINOR, PROJECT_VERSION_PATCH };
 
 #ifdef NDEBUG
 constexpr bool is_debug = false;
@@ -24,7 +25,7 @@ static constexpr inline const char* BUILD_TYPE = is_debug ? "DEBUG" : "RELEASE";
 
 auto getVersionInfo() -> std::string
 {
-    return std::format( "{}.{}.{}", VERSION.major, VERSION.minor, VERSION.patch );
+    return std::format( "{}.{}.{}", PROJECT_VERSION.major, PROJECT_VERSION.minor, PROJECT_VERSION.patch );
 }
 
 auto getBuildInfo() -> std::string
