@@ -7,15 +7,10 @@ tasks:
     silent: true
     cmds:
       - cmd: task --list-all
-        platforms: [linux]
-      - cmd: task.exe --list-all
-        platforms: [windows]
 
   clean:
     cmds:
       - cmd: rm -rf build
-        platforms: [linux]
-      - cmd: rm -rf conan
         platforms: [linux]
 
   config_linux:
@@ -62,13 +57,11 @@ tasks:
     cmds:
       - task: config_debug
       - cmd: cmake --build build/Debug
-        platforms: [linux]
 
   build:
     cmds:
       - task: config
       - cmd: cmake --build build/Release
-        platforms: [linux]
 
   pack:
     cmds:
