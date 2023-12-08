@@ -1,9 +1,9 @@
 #include "logging.h"
 
-/* static auto& logger{ logging::getLogger( __FILE__ ) }; */
+static auto& logger = logging::getLogger( __FILE__ );
 
 auto main() -> int
 {
-    /* logger.info( "Done." ); */
+    logger.info( "Done." );
     return 0;
 }
