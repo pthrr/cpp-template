@@ -1,6 +1,9 @@
-#include "print.h"
+#include "logging.h"
+
+/* static auto& logger{ logging::getLogger( __FILE__ ) }; */
 
 auto main() -> int
 {
-    return print( "Hello World!" );
+    /* logger.info( "Done." ); */
+    return 0;
 }

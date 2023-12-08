@@ -3,9 +3,12 @@ message(STATUS "build type is: ${CMAKE_BUILD_TYPE}")
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# set(CMAKE_CXX_STANDARD 20)
-# set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# set(CMAKE_CXX_EXTENSIONS OFF)
+find_program(CCACHE_PROGRAM ccache)
+
+if(CCACHE_PROGRAM)
+  set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
+  message(STATUS "Using ccache")
+endif()
 
 find_program(MOLD_LINKER mold)
 find_program(GOLD_LINKER gold)
