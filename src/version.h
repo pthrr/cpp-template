@@ -2,16 +2,16 @@
 
 #include <format>
 
-#include "types.hpp"
+#include "types.h"
 
 // TODO: use constexpr
 #define PROJECT_VERSION_MAJOR 0
 #define PROJECT_VERSION_MINOR 1
 #define PROJECT_VERSION_PATCH 0
 
-namespace my_project {
+namespace version {
 
-static constexpr inline version_t PROJECT_VERSION{
+static constexpr inline Version PROJECT_VERSION{
     PROJECT_VERSION_MAJOR, PROJECT_VERSION_MINOR, PROJECT_VERSION_PATCH };
 
 #ifdef NDEBUG
@@ -40,4 +40,4 @@ auto getBuildInfo() -> std::string
     return std::format( "{}-{}", build_version, build_type );
 }
 
-} // namespace my_project
+} // namespace version

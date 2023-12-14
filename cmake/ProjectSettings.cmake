@@ -1,4 +1,4 @@
-message(STATUS "build type is: ${CMAKE_BUILD_TYPE}")
+message(STATUS "Build type is: ${CMAKE_BUILD_TYPE}")
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

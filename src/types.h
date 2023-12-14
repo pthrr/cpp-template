@@ -1,12 +1,12 @@
 #pragma once
 
-namespace my_project {
+namespace types {
 
-using version_t = struct version
+struct Version
 {
     int major = -1;
     int minor = -1;
     int patch = -1;
 };
 
-} // namespace my_project
+} // namespace types

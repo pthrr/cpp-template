@@ -1,6 +1,6 @@
 #include "logging.h"
 
-static auto& logger = logging::getLogger( __FILE__ );
+static auto& logger = logging::getFileLogger( __FILE__ );
 
 auto main() -> int
 {
