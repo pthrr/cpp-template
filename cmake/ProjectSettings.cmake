@@ -3,6 +3,8 @@ message(STATUS "Build type is: ${CMAKE_BUILD_TYPE}")
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(CMAKE_CXX_SCAN_FOR_MODULES TRUE)
+
 find_program(CCACHE_PROGRAM ccache)
 
 if(CCACHE_PROGRAM)
@@ -23,7 +25,7 @@ else()
   message(STATUS "Default linker will be used")
 endif()
 
-add_compile_options(-Wall -Wextra -pedantic)
+add_compile_options(-Wall -Wextra -pedantic -fmodules-ts)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   add_compile_options(-g3 -O0 -gsplit-dwarf)

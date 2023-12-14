@@ -1,9 +1,4 @@
-#pragma once
-
-#include "spdlog/sinks/stdout_color_sinks.h"
-#include "spdlog/spdlog.h"
-
-#include <string>
+module logging;
 
 static auto extractFileName( const std::string& filePath ) -> std::string
 {

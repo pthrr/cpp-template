@@ -15,6 +15,16 @@ find_package(Catch2 REQUIRED)
 
 file(GLOB_RECURSE ${PROJECT_NAME}_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE ${PROJECT_NAME}_HEADER CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
+# target_sources(
+#   my_app
+#   PRIVATE FILE_SET
+#           all_my_modules
+#           TYPE
+#           CXX_MODULES
+#           BASE_DIRS
+#           ${PROJECT_SOURCE_DIR}
+#           FILES
+#           logging.cppm)
 
 add_subdirectory(external)
 add_subdirectory(src)
