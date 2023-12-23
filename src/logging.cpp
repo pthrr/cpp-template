@@ -1,4 +1,4 @@
-module logging;
+#include "logging.h"
 
 static auto extractFileName( const std::string& filePath ) -> std::string
 {

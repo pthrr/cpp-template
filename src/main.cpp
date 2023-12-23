@@ -1,4 +1,4 @@
-import logging;
+#include "logging.h"
 
 static auto& logger = logging::getFileLogger( __FILE__ );
 
