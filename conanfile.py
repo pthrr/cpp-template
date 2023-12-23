@@ -1,4 +1,6 @@
 import shutil
+import os
+import json
 
 from conan import ConanFile, tools
 from conan.tools.cmake import CMake, CMakeToolchain
@@ -14,6 +16,21 @@ class Project(ConanFile):
         generator = "Ninja" if ninja_available else None
         tc = CMakeToolchain(self, generator=generator)
         tc.generate()
+        self.patch_cmake_presets()
+
+    def patch_cmake_presets(self):
+        cmake_presets_path = os.path.join(self.recipe_folder, "CMakePresets.json")
+        presets = json.dumps(
+            {
+                "version": 6,
+                "include": [
+                    f"build/{self.settings.build_type}/generators/CMakePresets.json"
+                ],
+            }
+        )
+
+        with open(cmake_presets_path, "w") as presets_file:
+            presets_file.write(presets)
 
     def layout(self) -> None:
         self.folders.source = "src"

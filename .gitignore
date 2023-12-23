@@ -1,6 +1,7 @@
 .vs/
 .task/
 conan/
+CMakePresets.json
 CMakeUserPresets.json
 
 # Created by https://www.toptal.com/developers/gitignore/api/c,c++,python,conan,cmake
