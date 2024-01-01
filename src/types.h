@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
 
 using u64 = uint64_t;
@@ -13,8 +14,8 @@ using i8 = int8_t;
 using f32 = float;
 using f64 = double;
 
-using isize = int;
-using usize = unsigned int;
+using isize = ptrdiff_t;
+using usize = size_t;
 
 constexpr u64 KiB = 1024;
 constexpr u64 MiB = KiB * KiB;
