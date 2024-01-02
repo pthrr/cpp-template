@@ -1,9 +1,9 @@
-#include "logging.h"
-
-static auto& logger = logging::getFileLogger( __FILE__ );
+#include <spdlog/spdlog.h>
 
 auto main() -> int
 {
-    logger.info( "Done." );
+    spdlog::set_pattern( "[%Y-%m-%d %H:%M:%S.%e] [%l] [thread %t] [%s:%#] %v" );
+    spdlog::set_level( spdlog::level::debug );
+    SPDLOG_INFO( "Done." );
     return 0;
 }
