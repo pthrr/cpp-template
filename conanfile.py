@@ -8,7 +8,7 @@ from conan.tools.cmake import CMake, CMakeToolchain
 
 class Project(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = ["catch2/3.4.0", "spdlog/1.12.0"]
+    requires = ["catch2/3.4.0", "spdlog/1.12.0", "protobuf/3.21.12"]
     generators = "CMakeDeps"
 
     def generate(self) -> None:
