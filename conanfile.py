@@ -2,13 +2,17 @@ import shutil
 import os
 import json
 
-from conan import ConanFile, tools
+from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain
 
 
 class Project(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = ["catch2/3.4.0", "spdlog/1.12.0", "protobuf/3.21.12"]
+    requires = [
+        "catch2/3.4.0",
+        "spdlog/1.12.0",
+        "libxml2/2.12.4",
+    ]
     generators = "CMakeDeps"
 
     def generate(self) -> None:
