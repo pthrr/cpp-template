@@ -9,7 +9,7 @@
 auto main( int argc, char** argv ) -> int
 {
     argparse::ArgumentParser program( "my_program" );
-    spdlog::level::level_enum log_level = spdlog::level::err;
+    spdlog::level::level_enum log_level = spdlog::level::info;
 
     program.add_argument( "--debug" )
         .help( "enable debug mode" )

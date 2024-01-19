@@ -85,4 +85,4 @@ tasks:
   run:
     cmds:
       - task: build
-      - cmd: build/Release/src/my_project --config data/config/config.json --debug
+      - cmd: build/Release/src/my_project --config data/config/config.json
