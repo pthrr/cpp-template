@@ -11,7 +11,8 @@ class Project(ConanFile):
     requires = [
         "catch2/3.4.0",
         "spdlog/1.12.0",
-        "libxml2/2.12.4",
+        "nlohmann_json/3.11.3",
+        "argparse/3.0",
     ]
     generators = "CMakeDeps"
 

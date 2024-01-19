@@ -12,7 +12,8 @@ project(
 
 find_package(spdlog REQUIRED)
 find_package(Catch2 REQUIRED)
-find_package(libxml2 REQUIRED)
+find_package(nlohmann_json REQUIRED)
+find_package(argparse REQUIRED)
 
 file(GLOB_RECURSE ${PROJECT_NAME}_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE ${PROJECT_NAME}_HEADER CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)

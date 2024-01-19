@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<config>
-    <appName>MyApp</appName>
-    <version>1.0.0</version>
-    <settings>
-        <setting name="theme">dark</setting>
-        <setting name="notifications">enabled</setting>
-    </settings>
-</config>
