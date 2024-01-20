@@ -18,7 +18,7 @@ tasks:
     platforms: [linux]
     cmds:
       - conan install . --build=missing -s build_type=Release --profile:build=profiles/zig011_x64 --profile:host=profiles/zig011_x64
-      - CC="zig cc" CXX="zig c++" cmake --preset conan-release
+      - cmake --preset conan-release
     sources:
       - CMakePresets.json
       - conanfile.*
@@ -36,7 +36,7 @@ tasks:
     platforms: [linux]
     cmds:
       - conan install . --build=missing -s build_type=Debug --profile:build=profiles/zig011_x64 --profile:host=profiles/zig011_x64
-      - CC="zig cc" CXX="zig c++" cmake --preset conan-debug
+      - cmake --preset conan-debug
     sources:
       - CMakePresets.json
       - conanfile.*

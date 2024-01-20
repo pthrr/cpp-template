@@ -19,6 +19,10 @@
         mold
         ccache
       ];
+      shellHook = ''
+        export CC="zig cc"
+        export CXX="zig c++"
+      '';
     };
   };
 }
