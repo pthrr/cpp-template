@@ -1,5 +1,3 @@
-message(STATUS "Build type is: ${CMAKE_BUILD_TYPE}")
-
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -25,11 +23,28 @@ else()
   message(STATUS "Default linker will be used")
 endif()
 
+add_compile_options(-D_FORTIFY_SOURCE=3)
 add_compile_options(-Wall -Wextra -pedantic)
 
+message(STATUS "Compiler ID is: ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "Build type is: ${CMAKE_BUILD_TYPE}")
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  add_compile_options(-g3 -O0 -gsplit-dwarf)
+  add_compile_options(-ftrivial-auto-var-init=pattern)
+  add_compile_options(-Og -g3 -gsplit-dwarf)
+
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    add_definitions(-D_LIBCPP_HARDENING_MODE_DEBUG)
+  else()
+    add_definitions(-D_GLIBCXX_DEBUG)
+  endif()
 else()
   add_compile_options(-O3 -DNDEBUG)
   add_link_options(-flto)
+
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    add_definitions(-D_LIBCPP_HARDENING_MODE_EXTENSIVE)
+  else()
+    add_definitions(-D_GLIBCXX_ASSERTIONS)
+  endif()
 endif()
