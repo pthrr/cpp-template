@@ -2,37 +2,29 @@
 #include <fstream>
 #include <string>
 
-#include <argparse/argparse.hpp>
+#include <CLI/CLI.hpp>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
 
 auto main( int argc, char** argv ) -> int
 {
-    argparse::ArgumentParser program( "my_program" );
+    CLI::App app( "My awesome CLI app" );
+
+    bool debug{ false };
+    app.add_flag( "-d,--debug", debug, "Enable debug mode" );
+
+    std::string config{ "config.txt" };
+    app.add_option( "-c,--config", config, "Path to the config file" );
+
+    CLI11_PARSE( app, argc, argv );
+
     spdlog::level::level_enum log_level{ spdlog::level::info };
 
-    program.add_argument( "-d", "--debug" )
-        .help( "enable debug mode" )
-        .default_value( false )
-        .implicit_value( true );
-
-    program.add_argument( "-c", "--config" )
-        .help( "Path to the config file" )
-        .default_value( std::string( "config.txt" ) );
-
-    try {
-        program.parse_args( argc, argv );
-    }
-    catch( const std::runtime_error& err ) {
-        SPDLOG_ERROR( "Error parsing arguments: {}", err.what() );
-        return 1;
-    }
-
-    if( program.get< bool >( "--debug" ) ) {
+    if( debug ) {
         log_level = spdlog::level::debug;
     }
 
-    std::ifstream file( program.get< std::string >( "--config" ) );
+    std::ifstream file( config );
     nlohmann::json json_config{};
     std::string app_name{};
 
