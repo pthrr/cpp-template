@@ -22,6 +22,7 @@
       shellHook = ''
         export CC="zig cc"
         export CXX="zig c++"
+        export ASAN_OPTIONS="print_legend=0:log_path=asan:detect_leaks=1"
       '';
     };
   };
