@@ -8,7 +8,7 @@
 
 auto main( int argc, char** argv ) -> int
 {
-    CLI::App app( "My awesome CLI app" );
+    CLI::App app{ "My awesome CLI app" };
 
     bool debug{ false };
     app.add_flag( "-d,--debug", debug, "Enable debug mode" );
