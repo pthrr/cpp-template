@@ -20,8 +20,8 @@
         ccache
       ];
       shellHook = ''
-        export CC="zig cc"
-        export CXX="zig c++"
+        export CC="zigcc"
+        export CXX="zigcxx"
       '';
     };
   };

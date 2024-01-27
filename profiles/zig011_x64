@@ -7,5 +7,5 @@ compiler.version=16
 os=Linux
 
 [buildenv]
-CC=zig cc
-CXX=zig c++
+CC=zigcc
+CXX=zigcxx
