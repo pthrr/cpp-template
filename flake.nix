@@ -22,6 +22,9 @@
       shellHook = ''
         export CC="zigcc"
         export CXX="zigcxx"
+        export LD="zigcc"
+        export AR="zigar"
+        export OBJCOPY="zigobjcopy"
       '';
     };
   };

@@ -9,3 +9,6 @@ os=Linux
 [buildenv]
 CC=zigcc
 CXX=zigcxx
+LD=zigcc
+AR=zigar
+OBJCOPY=zigobjcopy
