@@ -2,6 +2,7 @@
 
 #include <format>
 #include <string>
+#include <string_view>
 
 #include "types.h"
 
