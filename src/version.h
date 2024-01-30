@@ -41,7 +41,7 @@ auto getBuildInfo() -> std::string
     std::string version{ BUILD_VERSION };
     std::string type{ BUILD_TYPE };
 
-    if( version.compare( "<COMMIT_SHA>" ) == 0 || version.empty() ) {
+    if( version.compare( "<COMMIT_SHA>" ) == 0 or version.empty() ) {
         return type;
     }
 

@@ -24,7 +24,7 @@ auto main( int argc, char** argv ) -> int
         log_level = spdlog::level::debug;
     }
 
-    std::ifstream file( config );
+    std::ifstream file{ config };
     nlohmann::json json_config{};
     std::string app_name{};
 
