@@ -27,8 +27,8 @@ static constexpr inline bool IS_DEBUG = false;
 static constexpr inline bool IS_DEBUG = true;
 #endif
 
-static constexpr inline std::string BUILD_VERSION{ "<COMMIT_SHA>"s };
-static constexpr inline std::string BUILD_TYPE{ IS_DEBUG ? "DEBUG"s : "RELEASE"s };
+static constexpr inline std::string_view BUILD_VERSION{ "<COMMIT_SHA>" };
+static constexpr inline std::string_view BUILD_TYPE{ IS_DEBUG ? "DEBUG" : "RELEASE" };
 
 auto getVersionInfo() -> std::string
 {
@@ -37,6 +37,9 @@ auto getVersionInfo() -> std::string
 
 auto getBuildInfo() -> std::string
 {
+    std::string version{ BUILD_VERSION };
+    std::string type{ BUILD_TYPE };
+
     if( BUILD_VERSION.compare( "<COMMIT_SHA>" ) == 0 || BUILD_VERSION.empty() ) {
         return BUILD_TYPE;
     }
