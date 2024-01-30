@@ -41,11 +41,11 @@ auto getBuildInfo() -> std::string
     std::string version{ BUILD_VERSION };
     std::string type{ BUILD_TYPE };
 
-    if( BUILD_VERSION.compare( "<COMMIT_SHA>" ) == 0 || BUILD_VERSION.empty() ) {
-        return BUILD_TYPE;
+    if( version.compare( "<COMMIT_SHA>" ) == 0 || version.empty() ) {
+        return type;
     }
 
-    return std::format( "{}-{}", BUILD_VERSION, BUILD_TYPE );
+    return std::format( "{}-{}", version, type );
 }
 
 } // namespace version
