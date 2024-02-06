@@ -67,6 +67,12 @@ tasks:
       - task: config
       - cmd: cmake --build build/Release
 
+  compile_config:
+    cmds:
+      - cmd: cue vet data/config/schema.cue data/config/config.cue
+      - cmd: rm -f data/config/config.json
+      - cmd: cue export data/config/config.cue -o data/config/config.json
+
   pack:
     cmds:
       - task: build
@@ -85,4 +91,5 @@ tasks:
   run:
     cmds:
       - task: build
+      - task: compile_config
       - cmd: build/Release/src/my_project --config data/config/config.json
