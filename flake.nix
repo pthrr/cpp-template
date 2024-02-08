@@ -20,10 +20,6 @@
         ccache
       ];
       shellHook = ''
-        alias zigcc='zig cc'
-        alias zigcxx='zig c++'
-        alias zigar='zig ar'
-        alias zigobjcopy='zig objcopy'
         export CC="zigcc"
         export CXX="zigcxx"
         export LD="zigcc"
