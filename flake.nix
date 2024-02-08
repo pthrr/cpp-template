@@ -25,6 +25,7 @@
         export LD="zigcc"
         export AR="zigar"
         export OBJCOPY="zigobjcopy"
+        export IN_NIX_SHELL=1
       '';
     };
   };
