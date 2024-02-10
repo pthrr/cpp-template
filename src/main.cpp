@@ -37,9 +37,9 @@ auto main( int argc, char** argv ) -> int
         return 1;
     }
 
-    SPDLOG_INFO( "Starting {} ..", app_name );
     spdlog::set_pattern( "[%Y-%m-%d %H:%M:%S.%e] [%l] [thread %t] [%s:%#] %v" );
     spdlog::set_level( log_level );
+    SPDLOG_INFO( "Starting {} ..", app_name );
     SPDLOG_INFO( "Done." );
     return 0;
 }

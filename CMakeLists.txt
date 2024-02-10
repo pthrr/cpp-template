@@ -22,3 +22,9 @@ file(GLOB_RECURSE ${PROJECT_NAME}_HEADER CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURC
 add_subdirectory(external)
 add_subdirectory(src)
 add_subdirectory(tests)
+
+execute_process(
+    COMMAND ${CMAKE_COMMAND} -E create_symlink
+    ${CMAKE_BINARY_DIR}/compile_commands.json
+    ${CMAKE_SOURCE_DIR}/build/compile_commands.json
+)
