@@ -17,12 +17,12 @@ using f32 = float;
 using usize = size_t;
 using isize = ptrdiff_t;
 
-static constexpr inline u64 KiB = 1024;
-static constexpr inline u64 MiB = KiB * KiB;
-static constexpr inline u64 GiB = KiB * KiB * KiB;
-static constexpr inline u64 TiB = KiB * KiB * KiB * KiB;
-static constexpr inline u64 PiB = KiB * KiB * KiB * KiB * KiB;
-static constexpr inline u64 EiB = KiB * KiB * KiB * KiB * KiB * KiB;
+static constexpr u64 KiB = 1024;
+static constexpr u64 MiB = KiB * KiB;
+static constexpr u64 GiB = KiB * KiB * KiB;
+static constexpr u64 TiB = KiB * KiB * KiB * KiB;
+static constexpr u64 PiB = KiB * KiB * KiB * KiB * KiB;
+static constexpr u64 EiB = KiB * KiB * KiB * KiB * KiB * KiB;
 
 namespace types {
 

@@ -6,6 +6,9 @@
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
 
+#include "types.h"
+#include "version.h"
+
 auto main( int argc, char** argv ) -> int
 {
     CLI::App app{ "My awesome CLI app" };
@@ -39,7 +42,7 @@ auto main( int argc, char** argv ) -> int
 
     spdlog::set_pattern( "[%Y-%m-%d %H:%M:%S.%e] [%l] [thread %t] [%s:%#] %v" );
     spdlog::set_level( log_level );
-    SPDLOG_INFO( "Starting {} ..", app_name );
+    SPDLOG_INFO( "Starting {} v{} ..", app_name, version::getVersionInfo() );
     SPDLOG_INFO( "Done." );
     return 0;
 }
