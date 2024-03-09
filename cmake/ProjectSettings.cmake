@@ -23,7 +23,15 @@ else()
   message(STATUS "Default linker will be used")
 endif()
 
-add_compile_options(-Wall -Wextra -pedantic)
+add_compile_options(
+  -Wall
+  -Wextra
+  -pedantic
+  -Wformat
+  -Wformat=2
+  -Wconversion
+  -Wsign-conversion
+  -Wimplicit-fallthrough)
 add_compile_options(-ftemplate-backtrace-limit=2 -fdiagnostics-color=always -fdiagnostics-show-template-tree)
 
 message(STATUS "Compiler ID is: ${CMAKE_CXX_COMPILER_ID}")
@@ -32,16 +40,19 @@ message(STATUS "Build type is: ${CMAKE_BUILD_TYPE}")
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   add_compile_options(-ftrivial-auto-var-init=pattern)
   add_compile_options(-Og -g3 -gsplit-dwarf)
+  add_compile_options(-Werror)
   # add_compile_options(-fsanitize=address -fno-omit-frame-pointer)
   # add_link_options(-fsanitize=address)
 
   if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     add_definitions(-D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_DEBUG)
   else()
+    add_compile_options(-Wtrampolines)
     add_definitions(-D_GLIBCXX_DEBUG)
     add_compile_options(-fmax-errors=2)
   endif()
 else()
+  add_compile_options(-ftrivial-auto-var-init=zero)
   add_compile_options(-D_FORTIFY_SOURCE=3)
   add_compile_options(-O3 -DNDEBUG)
   add_link_options(-flto)
@@ -49,6 +60,7 @@ else()
   if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     add_definitions(-D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_EXTENSIVE)
   else()
+    add_compile_options(-Wtrampolines)
     add_definitions(-D_GLIBCXX_ASSERTIONS)
     add_compile_options(-fmax-errors=2)
   endif()
