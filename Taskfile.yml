@@ -17,7 +17,7 @@ tasks:
     internal: true
     platforms: [linux]
     cmds:
-      - conan install . --build=missing -s build_type=Release --profile:build=profiles/gcc12_x64 --profile:host=profiles/gcc12_x64
+      - conan install . --build=missing -s build_type=Release --profile:build=profiles/gcc13_x64 --profile:host=profiles/gcc13_x64
       - cmake --preset conan-release
     sources:
       - CMakePresets.json
@@ -36,7 +36,7 @@ tasks:
     internal: true
     platforms: [linux]
     cmds:
-      - conan install . --build=missing -s build_type=Debug --profile:build=profiles/gcc12_x64 --profile:host=profiles/gcc12_x64
+      - conan install . --build=missing -s build_type=Debug --profile:build=profiles/gcc13_x64 --profile:host=profiles/gcc13_x64
       - cmake --preset conan-debug
     sources:
       - CMakePresets.json
