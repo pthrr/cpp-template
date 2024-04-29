@@ -1,9 +1,8 @@
 #pragma once
 
+#include <format>
 #include <string>
 #include <string_view>
-
-#include <fmt/core.h>
 
 #include "types.h"
 
@@ -34,7 +33,7 @@ static constexpr std::string_view BUILD_TYPE{ IS_DEBUG ? "DEBUG" : "RELEASE" };
 
 auto getVersionInfo() -> std::string
 {
-    return fmt::format( "{}.{}.{}", PROJECT_VERSION.major, PROJECT_VERSION.minor, PROJECT_VERSION.patch );
+    return std::format( "{}.{}.{}", PROJECT_VERSION.major, PROJECT_VERSION.minor, PROJECT_VERSION.patch );
 }
 
 auto getBuildInfo() -> std::string
@@ -46,7 +45,7 @@ auto getBuildInfo() -> std::string
         return type;
     }
 
-    return fmt::format( "{}-{}", version, type );
+    return std::format( "{}-{}", version, type );
 }
 
 } // namespace version
