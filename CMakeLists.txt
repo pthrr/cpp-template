@@ -11,7 +11,6 @@ project(
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/ProjectSettings.cmake)
 
-find_package(fmt REQUIRED)
 find_package(spdlog REQUIRED)
 find_package(Catch2 REQUIRED)
 find_package(nlohmann_json REQUIRED)
