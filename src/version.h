@@ -8,9 +8,9 @@
 
 namespace version {
 
-static constexpr i8 PROJECT_VERSION_MAJOR{ 0 };
-static constexpr i8 PROJECT_VERSION_MINOR{ 1 };
-static constexpr i8 PROJECT_VERSION_PATCH{ 0 };
+constexpr i8 PROJECT_VERSION_MAJOR{ 0 };
+constexpr i8 PROJECT_VERSION_MINOR{ 1 };
+constexpr i8 PROJECT_VERSION_PATCH{ 0 };
 
 struct Version
 {
@@ -19,8 +19,7 @@ struct Version
     i8 patch = -1;
 };
 
-static constexpr Version PROJECT_VERSION{
-    PROJECT_VERSION_MAJOR, PROJECT_VERSION_MINOR, PROJECT_VERSION_PATCH };
+constexpr Version PROJECT_VERSION{ PROJECT_VERSION_MAJOR, PROJECT_VERSION_MINOR, PROJECT_VERSION_PATCH };
 
 #ifdef NDEBUG
 static constexpr bool IS_DEBUG = false;
@@ -28,8 +27,8 @@ static constexpr bool IS_DEBUG = false;
 static constexpr bool IS_DEBUG = true;
 #endif
 
-static constexpr std::string_view BUILD_VERSION{ "<COMMIT_SHA>" };
-static constexpr std::string_view BUILD_TYPE{ IS_DEBUG ? "DEBUG" : "RELEASE" };
+constexpr std::string_view BUILD_VERSION{ "<COMMIT_SHA>" };
+constexpr std::string_view BUILD_TYPE{ IS_DEBUG ? "DEBUG" : "RELEASE" };
 
 auto getVersionInfo() -> std::string
 {
