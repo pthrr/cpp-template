@@ -1,27 +1,29 @@
 {
+  description = "cpp-template";
+
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, ... }: let
-    system = "x86_64-linux";
+  outputs = { self, nixpkgs, utils, }: utils.lib.eachDefaultSystem (system: let
+    pkgs = import nixpkgs { inherit system; };
   in {
-    devShells."${system}".default = let
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-    in pkgs.mkShell.override { stdenv = pkgs.gcc13Stdenv; } {
-      nativeBuildInputs = with pkgs; [
+    devShells.default = pkgs.mkShell.override { stdenv = pkgs.gcc13Stdenv; } {
+      packages = with pkgs; [
         cmake
         conan
         ninja
         mold
         ccache
+        python3
       ];
+
       shellHook = ''
         export IN_NIX_SHELL=1
-        export LD_LIBRARY_PATH="${pkgs.gcc13Stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH"
+        export QT_PLUGIN_PATH="$QT_PLUGIN_PATH:${pkgs.qt6.qtwayland}/lib/qt-6/plugins"
+        export QT_QPA_PLATFORM="wayland;xcb"
       '';
     };
-  };
+  });
 }
