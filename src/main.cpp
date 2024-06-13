@@ -44,5 +44,4 @@ auto main( int argc, char** argv ) -> int
     spdlog::set_level( log_level );
     SPDLOG_INFO( "Starting {} v{} ..", app_name, version::getVersionInfo() );
     SPDLOG_INFO( "Done." );
-    return 0;
 }
