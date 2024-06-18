@@ -22,9 +22,9 @@ struct Version
 constexpr Version PROJECT_VERSION{ PROJECT_VERSION_MAJOR, PROJECT_VERSION_MINOR, PROJECT_VERSION_PATCH };
 
 #ifdef NDEBUG
-static constexpr bool IS_DEBUG = false;
+constexpr bool IS_DEBUG = false;
 #else
-static constexpr bool IS_DEBUG = true;
+constexpr bool IS_DEBUG = true;
 #endif
 
 constexpr std::string_view BUILD_VERSION{ "<COMMIT_SHA>" };
