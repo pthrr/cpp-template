@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <stdfloat>
 #include <string>
 
 using u64 = uint64_t;
@@ -14,8 +15,10 @@ using i32 = int32_t;
 using i16 = int16_t;
 using i8 = int8_t;
 
-using f64 = double;
-using f32 = float;
+using f128 = std::float128_t;
+using f64 = std::float64_t;
+using f32 = std::float32_t;
+using f16 = std::float16_t;
 
 using usize = size_t;
 using isize = ptrdiff_t;
@@ -69,6 +72,11 @@ constexpr auto operator"" _u64( unsigned long long int value ) noexcept -> u64
     return static_cast< u64 >( value );
 }
 
+constexpr auto operator"" _f16( long double value ) noexcept -> f16
+{
+    return static_cast< f16 >( value );
+}
+
 constexpr auto operator"" _f32( long double value ) noexcept -> f32
 {
     return static_cast< f32 >( value );
@@ -77,6 +85,11 @@ constexpr auto operator"" _f32( long double value ) noexcept -> f32
 constexpr auto operator"" _f64( long double value ) noexcept -> f64
 {
     return static_cast< f64 >( value );
+}
+
+constexpr auto operator"" _f128( long double value ) noexcept -> f128
+{
+    return static_cast< f128 >( value );
 }
 
 namespace types {

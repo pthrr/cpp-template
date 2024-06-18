@@ -21,8 +21,6 @@
 
       shellHook = ''
         export IN_NIX_SHELL=1
-        export QT_PLUGIN_PATH="$QT_PLUGIN_PATH:${pkgs.qt6.qtwayland}/lib/qt-6/plugins"
-        export QT_QPA_PLATFORM="wayland;xcb"
       '';
     };
   });
