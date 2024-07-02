@@ -27,7 +27,6 @@ add_compile_options(
   -Wall
   -Wextra
   -pedantic
-  -Wformat
   -Wformat=2
   -Wconversion
   -Wsign-conversion

@@ -17,6 +17,7 @@
         mold
         ccache
         python3
+        gdb
       ];
 
       shellHook = ''
