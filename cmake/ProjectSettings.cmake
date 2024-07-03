@@ -3,11 +3,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
-find_program(CCACHE_PROGRAM ccache)
+find_program(CCACHE_PROGRAM sccache)
 
 if(CCACHE_PROGRAM)
   set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
-  message(STATUS "Using ccache")
+  message(STATUS "Using sccache")
 endif()
 
 find_program(MOLD_LINKER mold)

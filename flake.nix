@@ -15,7 +15,7 @@
         conan
         ninja
         mold
-        ccache
+        sccache
         python3
         gdb
       ];
