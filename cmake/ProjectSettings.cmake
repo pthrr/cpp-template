@@ -27,6 +27,12 @@ add_compile_options(
   -Wall
   -Wextra
   -pedantic
+  -Wshadow
+  -Wnon-virtual-dtor
+  -Wold-style-cast
+  -Wcast-align
+  -Woverloaded-virtual
+  -Wdouble-promotion
   -Wformat=2
   -Wconversion
   -Wsign-conversion
