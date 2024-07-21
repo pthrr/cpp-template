@@ -85,13 +85,18 @@ tasks:
       - task: build
       - cmd: ctest --test-dir build/Release/tests --output-on-failure
 
-  run_debug:
+  test_debug:
     cmds:
       - task: build_debug
-      - cmd: build/Debug/src/my_project --config data/config/config.json --debug
+      - cmd: ctest --test-dir build/Debug/tests --output-on-failure
 
   run:
     cmds:
       - task: build
       - task: compile_config
       - cmd: build/Release/src/my_project --config data/config/config.json
+
+  run_debug:
+    cmds:
+      - task: build_debug
+      - cmd: build/Debug/src/my_project --config data/config/config.json --debug

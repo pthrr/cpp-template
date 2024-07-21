@@ -38,6 +38,8 @@ add_compile_options(
   -Wsign-conversion
   -Wimplicit-fallthrough)
 add_compile_options(-ftemplate-backtrace-limit=2 -fdiagnostics-color=always -fdiagnostics-show-template-tree)
+add_compile_options(-fPIE)
+add_link_options(-pie)
 
 message(STATUS "Compiler ID is: ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "Build type is: ${CMAKE_BUILD_TYPE}")
@@ -46,8 +48,9 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   add_compile_options(-ftrivial-auto-var-init=pattern -fno-rtti)
   add_compile_options(-Og -g3 -gsplit-dwarf)
   add_compile_options(-Werror)
-  # add_compile_options(-fsanitize=address -fno-omit-frame-pointer)
-  # add_link_options(-fsanitize=address)
+  add_compile_options(-fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -fasynchronous-unwind-tables)
+  add_compile_options(-fsanitize=address,undefined,leak)
+  add_link_options(-fsanitize=address,undefined,leak)
   add_link_options(-static-libstdc++ -static-libgcc)
 
   if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
