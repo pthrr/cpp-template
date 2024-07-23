@@ -51,34 +51,28 @@ tasks:
       - build/Debug/compile_commands.json
       - build/compile_commands.json
 
-  config_debug:
+  pack:
     cmds:
-      - task: config_linux_debug
+      - task: build
+      - cmd: cd build/Release && cpack -B install -C Release
 
   config:
     cmds:
       - task: config_linux
 
-  build_debug:
+  config_debug:
     cmds:
-      - task: config_debug
-      - cmd: cmake --build build/Debug
+      - task: config_linux_debug
 
   build:
     cmds:
       - task: config
       - cmd: cmake --build build/Release
 
-  compile_config:
+  build_debug:
     cmds:
-      - cmd: cue vet data/config/schema.cue data/config/config.cue
-      - cmd: rm -f data/config/config.json
-      - cmd: cue export data/config/config.cue -o data/config/config.json
-
-  pack:
-    cmds:
-      - task: build
-      - cmd: cd build/Release && cpack -B install -C Release
+      - task: config_debug
+      - cmd: cmake --build build/Debug
 
   test:
     cmds:
@@ -90,6 +84,12 @@ tasks:
       - task: build_debug
       - cmd: ctest --test-dir build/Debug/tests --output-on-failure
 
+  compile_config:
+    cmds:
+      - cmd: cue vet data/config/schema.cue data/config/config.cue
+      - cmd: rm -f data/config/config.json
+      - cmd: cue export data/config/config.cue -o data/config/config.json
+
   run:
     cmds:
       - task: build
@@ -99,4 +99,5 @@ tasks:
   run_debug:
     cmds:
       - task: build_debug
+      - task: compile_config
       - cmd: build/Debug/src/my_project --config data/config/config.json --debug

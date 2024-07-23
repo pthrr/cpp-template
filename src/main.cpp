@@ -1,11 +1,10 @@
-#include <exception>
 #include <fstream>
-#include <string>
 
 #include <CLI/CLI.hpp>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
 
+#include "helpers.h"
 #include "types.h"
 #include "version.h"
 
@@ -16,7 +15,7 @@ auto main( int argc, char** argv ) -> int
     bool debug{ false };
     app.add_flag( "-d,--debug", debug, "Enable debug mode" );
 
-    std::string config{ "config.txt" };
+    str config{ "config.txt" };
     app.add_option( "-c,--config", config, "Path to the config file" );
 
     CLI11_PARSE( app, argc, argv );
@@ -29,11 +28,11 @@ auto main( int argc, char** argv ) -> int
 
     std::ifstream file{ config };
     nlohmann::json json_config{};
-    std::string app_name{};
+    str app_name{};
 
     try {
         file >> json_config;
-        app_name = json_config["app"]["name"].get< std::string >();
+        app_name = json_config["app"]["name"].get< str >();
     }
     catch( const nlohmann::json::exception& err ) {
         SPDLOG_ERROR( "Error parsing config: {}", err.what() );
