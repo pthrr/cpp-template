@@ -65,6 +65,7 @@ else()
   add_compile_options(-O3 -DNDEBUG -flto=4)
   add_link_options(-flto=4)
   add_link_options(-static-libstdc++ -static-libgcc)
+  add_link_options(-s)
 
   if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     add_definitions(-D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_EXTENSIVE)
