@@ -4,9 +4,11 @@
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
 
-#include "helpers.h"
-#include "types.h"
-#include "version.h"
+#include "helpers.hpp"
+#include "types.hpp"
+#include "version.hpp"
+
+#include "lib.rs.h"
 
 auto main( int argc, char** argv ) -> int
 {
@@ -42,5 +44,10 @@ auto main( int argc, char** argv ) -> int
     spdlog::set_pattern( "[%Y-%m-%d %H:%M:%S.%e] [%l] [thread %t] [%s:%#] %v" );
     spdlog::set_level( log_level );
     SPDLOG_INFO( "Starting {} v{} ..", app_name, version::getVersionInfo() );
+
+    auto result = add_numbers( 2, 3 );
+    assert( result == 5 );
+    SPDLOG_INFO( "Result from Rust: {}", result );
+
     SPDLOG_INFO( "Done." );
 }
