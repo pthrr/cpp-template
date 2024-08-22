@@ -5,6 +5,7 @@
 #include <spdlog/spdlog.h>
 
 #include "helpers.hpp"
+#include "oxidize.hpp"
 #include "types.hpp"
 #include "version.hpp"
 

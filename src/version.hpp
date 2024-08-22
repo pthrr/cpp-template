@@ -1,10 +1,9 @@
 #pragma once
 
 #include <format>
-#include <string>
 #include <string_view>
 
-#include "types.hpp"
+#include "oxidize.hpp"
 
 namespace version {
 
@@ -30,15 +29,15 @@ constexpr bool IS_DEBUG = true;
 constexpr std::string_view BUILD_VERSION{ "<COMMIT_SHA>" };
 constexpr std::string_view BUILD_TYPE{ IS_DEBUG ? "DEBUG" : "RELEASE" };
 
-auto getVersionInfo() -> std::string
+auto getVersionInfo() -> str
 {
     return std::format( "{}.{}.{}", PROJECT_VERSION.major, PROJECT_VERSION.minor, PROJECT_VERSION.patch );
 }
 
-auto getBuildInfo() -> std::string
+auto getBuildInfo() -> str
 {
-    std::string version{ BUILD_VERSION };
-    std::string type{ BUILD_TYPE };
+    str version{ BUILD_VERSION };
+    str type{ BUILD_TYPE };
 
     if( version == "<COMMIT_SHA>" or version.empty() ) {
         return type;
