@@ -3,8 +3,15 @@
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
+#include <exception>
 #include <stdfloat>
 #include <string>
+
+/*
+ *
+ * types
+ *
+ */
 
 using u64 = uint64_t;
 using u32 = uint32_t;
@@ -84,4 +91,15 @@ constexpr auto operator"" _f64( long double value ) noexcept -> f64
 constexpr auto operator"" _f128( long double value ) noexcept -> f128
 {
     return static_cast< f128 >( value );
+}
+
+/*
+ *
+ * functions
+ *
+ */
+
+inline auto panic( std::string const& message ) -> void
+{
+    throw std::runtime_error( message );
 }
