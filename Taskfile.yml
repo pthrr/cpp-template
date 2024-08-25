@@ -94,10 +94,10 @@ tasks:
     cmds:
       - task: build
       - task: compile_config
-      - cmd: build/Release/src/my_project --config data/config/config.json
+      - cmd: build/Release/src/cpp/my_project --config data/config/config.json
 
   run_debug:
     cmds:
       - task: build_debug
       - task: compile_config
-      - cmd: build/Debug/src/my_project --config data/config/config.json --debug
+      - cmd: build/Debug/src/cpp/my_project --config data/config/config.json --debug

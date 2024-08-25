@@ -25,7 +25,7 @@ fn extract_project_name(cmake_lists_content: &str) -> Option<String> {
 
 fn main() {
     let cmake_lists =
-        fs::read_to_string("../CMakeLists.txt").expect("Failed to read CMakeLists.txt");
+        fs::read_to_string("../../CMakeLists.txt").expect("Failed to read CMakeLists.txt");
     let project_name = extract_project_name(&cmake_lists).unwrap_or("cxxbridge".into());
     let cpp_std = env::var("CONAN_CXX_STD").unwrap_or("23".into());
 
