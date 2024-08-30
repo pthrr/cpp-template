@@ -14,12 +14,12 @@
 
 namespace {
 
-auto get() -> Result< u32 >
+auto get() -> Result< i32 >
 {
     std::random_device rd;
     std::mt19937 gen( rd() );
     std::uniform_int_distribution<> distr( 1, 100 );
-    i32 num = distr( gen );
+    i32 num{ distr( gen ) };
 
     if( num % 2 == 0 ) {
         return Err( "No number available!", Error::ErrorType::OverflowError );
