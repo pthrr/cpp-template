@@ -1,13 +1,10 @@
 set(RUST_LIB_NAME "rust")
 set(RUST_LIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/rust/target/${BUILD_TYPE_LOWER}")
 set(RUST_HEADER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/rust/target/cxxbridge/${RUST_LIB_NAME}/src")
+set(CARGO_CMD "cargo" "build")
 
 if(BUILD_TYPE_LOWER STREQUAL "release")
-    set(CARGO_CMD "cargo" "build" "--release")
-elseif(BUILD_TYPE_LOWER STREQUAL "debug")
-    set(CARGO_CMD "cargo" "build")
-else()
-    message(FATAL_ERROR "Unsupported build type: ${BUILD_TYPE_LOWER}")
+    list(APPEND CARGO_CMD "--release")
 endif()
 
 execute_process(

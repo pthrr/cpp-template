@@ -29,15 +29,15 @@ constexpr bool IS_DEBUG = true;
 constexpr std::string_view BUILD_VERSION{ "<COMMIT_SHA>" };
 constexpr std::string_view BUILD_TYPE{ IS_DEBUG ? "DEBUG" : "RELEASE" };
 
-auto getVersionInfo() -> str
+auto getVersionInfo() -> std::string
 {
     return std::format( "{}.{}.{}", PROJECT_VERSION.major, PROJECT_VERSION.minor, PROJECT_VERSION.patch );
 }
 
-auto getBuildInfo() -> str
+auto getBuildInfo() -> std::string
 {
-    str version{ BUILD_VERSION };
-    str type{ BUILD_TYPE };
+    std::string version{ BUILD_VERSION };
+    std::string type{ BUILD_TYPE };
 
     if( version == "<COMMIT_SHA>" or version.empty() ) {
         return type;

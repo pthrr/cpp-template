@@ -1,4 +1,5 @@
 #include <fstream>
+#include <random>
 
 #include <CLI/CLI.hpp>
 #include <nlohmann/json.hpp>
@@ -11,6 +12,24 @@
 
 #include "lib.rs.h"
 
+namespace {
+
+auto get() -> Result< u32 >
+{
+    std::random_device rd;
+    std::mt19937 gen( rd() );
+    std::uniform_int_distribution<> distr( 1, 100 );
+    i32 num = distr( gen );
+
+    if( num % 2 == 0 ) {
+        return Err( "No number available!", Error::ErrorType::OverflowError );
+    }
+
+    return Ok( num );
+}
+
+}
+
 auto main( int argc, char** argv ) -> int
 {
     CLI::App app{ "My awesome CLI app" };
@@ -18,7 +37,7 @@ auto main( int argc, char** argv ) -> int
     bool debug{ false };
     app.add_flag( "-d,--debug", debug, "Enable debug mode" );
 
-    str config{ "config.txt" };
+    std::string config{ "config.txt" };
     app.add_option( "-c,--config", config, "Path to the config file" );
 
     CLI11_PARSE( app, argc, argv );
@@ -31,11 +50,11 @@ auto main( int argc, char** argv ) -> int
 
     std::ifstream file{ config };
     nlohmann::json json_config{};
-    str app_name{};
+    std::string app_name{};
 
     try {
         file >> json_config;
-        app_name = json_config["app"]["name"].get< str >();
+        app_name = json_config["app"]["name"].get< std::string >();
     }
     catch( const nlohmann::json::exception& err ) {
         SPDLOG_ERROR( "Error parsing config: {}", err.what() );
@@ -46,9 +65,12 @@ auto main( int argc, char** argv ) -> int
     spdlog::set_level( log_level );
     SPDLOG_INFO( "Starting {} v{} ..", app_name, version::getVersionInfo() );
 
-    auto result = add_numbers( 2, 3 );
-    assert( result == 5 );
-    SPDLOG_INFO( "Result from Rust: {}", result );
+    if( auto val = get() ) {
+        auto result = DBG( add_numbers( 2, 3 ) ) + DBG( val.value() );
+    }
+    else {
+        SPDLOG_ERROR( val.error().to_str() );
+    }
 
     SPDLOG_INFO( "Done." );
 }

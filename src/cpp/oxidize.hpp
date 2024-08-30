@@ -4,14 +4,13 @@
 #include <cstddef>
 #include <cstdint>
 #include <exception>
+#include <expected>
+#include <print>
+#include <source_location>
 #include <stdfloat>
 #include <string>
 
-/*
- *
- * types
- *
- */
+// ---------------------------------------------------------------------------
 
 using u64 = uint64_t;
 using u32 = uint32_t;
@@ -31,7 +30,7 @@ using f16 = std::float16_t;
 using usize = size_t;
 using isize = ptrdiff_t;
 
-using str = std::string;
+using str = const char*;
 
 constexpr auto operator"" _i8( unsigned long long int value ) noexcept -> i8
 {
@@ -93,13 +92,121 @@ constexpr auto operator"" _f128( long double value ) noexcept -> f128
     return static_cast< f128 >( value );
 }
 
-/*
- *
- * functions
- *
- */
+// ---------------------------------------------------------------------------
 
 inline auto panic( std::string const& message ) -> void
 {
     throw std::runtime_error( message );
 }
+
+inline auto todo() -> void
+{
+    throw std::logic_error( "Not yet implemented" );
+}
+
+using std::unreachable;
+
+// ---------------------------------------------------------------------------
+
+#ifdef NDEBUG
+#define DEBUG_ASSERT( condition ) assert( condition )
+#else
+#define DEBUG_ASSERT( condition ) ( (void)0 )
+#endif
+
+#define DBG( x ) oxidize::dbg_impl( ( x ), #x, std::source_location::current() )
+
+// ---------------------------------------------------------------------------
+
+struct [[nodiscard]] Error
+{
+    enum class ErrorType
+    {
+        ArithmeticError,
+        FloatingPointError,
+        OverflowError,
+        ZeroDivisionError,
+        AssertionError,
+        AttributeError,
+        IndexError,
+        KeyError,
+        OSError,
+        TimeoutError,
+        RuntimeError,
+        NotImplementedError,
+        SyntaxError,
+        SystemError,
+        TypeError,
+        ValueError,
+        GenericError,
+    };
+
+    std::string message;
+    ErrorType type;
+
+    explicit Error( str msg, ErrorType typ )
+        : message( msg )
+        , type( typ )
+    {
+    }
+
+    // clang-format off
+    static auto to_str( ErrorType typ ) -> std::string {
+        switch ( typ ) {
+            case Error::ErrorType::ArithmeticError: return "ArithmeticError";
+            case Error::ErrorType::FloatingPointError: return "FloatingPointError";
+            case Error::ErrorType::OverflowError: return "OverflowError";
+            case Error::ErrorType::ZeroDivisionError: return "ZeroDivisionError";
+            case Error::ErrorType::AssertionError: return "AssertionError";
+            case Error::ErrorType::AttributeError: return "AttributeError";
+            case Error::ErrorType::IndexError: return "IndexError";
+            case Error::ErrorType::KeyError: return "KeyError";
+            case Error::ErrorType::OSError: return "OSError";
+            case Error::ErrorType::TimeoutError: return "TimeoutError";
+            case Error::ErrorType::RuntimeError: return "RuntimeError";
+            case Error::ErrorType::NotImplementedError: return "NotImplementedError";
+            case Error::ErrorType::SyntaxError: return "SyntaxError";
+            case Error::ErrorType::SystemError: return "SystemError";
+            case Error::ErrorType::TypeError: return "TypeError";
+            case Error::ErrorType::ValueError: return "ValueError";
+            case Error::ErrorType::GenericError: return "GenericError";
+            default: return "UnknownError";
+        }
+    } // clang-format on
+
+    [[nodiscard]] auto to_str() const -> std::string
+    {
+        return std::format( "{}: {}", to_str( type ), message );
+    }
+};
+
+template< typename T >
+using Result = std::expected< T, Error >;
+
+template< typename T >
+auto Ok( T value ) -> Result< T >
+{
+    return value;
+}
+
+auto Err( str msg, Error::ErrorType typ = Error::ErrorType::GenericError ) -> std::unexpected< Error >
+{
+    return std::unexpected< Error >( Error( msg, typ ) );
+}
+
+namespace oxidize {
+
+template< typename T >
+auto dbg_impl( T&& value, str expr, std::source_location const location ) -> T
+{
+    std::print( "{} = {} ({}:{}:{}:{}\n",
+        expr,
+        value,
+        location.file_name(),
+        location.function_name(),
+        location.line(),
+        location.column() );
+    return std::forward< T >( value );
+}
+
+} // namespace oxidize
