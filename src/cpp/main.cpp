@@ -56,7 +56,7 @@ auto main( int argc, char** argv ) -> int
         file >> json_config;
         app_name = json_config["app"]["name"].get< std::string >();
     }
-    catch( const nlohmann::json::exception& err ) {
+    catch( nlohmann::json::exception const& err ) {
         SPDLOG_ERROR( "Error parsing config: {}", err.what() );
         return 1;
     }
@@ -69,7 +69,7 @@ auto main( int argc, char** argv ) -> int
         auto result = DBG( add_numbers( 2, 3 ) ) + DBG( val.value() );
     }
     else {
-        SPDLOG_ERROR( val.error().to_str() );
+        SPDLOG_ERROR( val.error().to_string() );
     }
 
     SPDLOG_INFO( "Done." );

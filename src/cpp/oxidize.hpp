@@ -151,7 +151,7 @@ struct [[nodiscard]] Error
     }
 
     // clang-format off
-    static auto to_str( ErrorType typ ) -> std::string {
+    static auto to_string( ErrorType typ ) -> std::string {
         switch ( typ ) {
             case Error::ErrorType::ArithmeticError: return "ArithmeticError";
             case Error::ErrorType::FloatingPointError: return "FloatingPointError";
@@ -174,9 +174,9 @@ struct [[nodiscard]] Error
         }
     } // clang-format on
 
-    [[nodiscard]] auto to_str() const -> std::string
+    [[nodiscard]] auto to_string() const -> std::string
     {
-        return std::format( "{}: {}", to_str( type ), message );
+        return std::format( "{}: {}", to_string( type ), message );
     }
 };
 
