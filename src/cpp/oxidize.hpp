@@ -184,12 +184,12 @@ template< typename T >
 using Result = std::expected< T, Error >;
 
 template< typename T >
-auto Ok( T value ) -> Result< T >
+inline auto Ok( T value ) -> Result< T >
 {
     return value;
 }
 
-auto Err( str msg, Error::ErrorType typ = Error::ErrorType::GenericError ) -> std::unexpected< Error >
+inline auto Err( str msg, Error::ErrorType typ = Error::ErrorType::GenericError ) -> std::unexpected< Error >
 {
     return std::unexpected< Error >( Error( msg, typ ) );
 }
