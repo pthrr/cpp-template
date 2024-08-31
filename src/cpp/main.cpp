@@ -66,7 +66,7 @@ auto main( int argc, char** argv ) -> int
     SPDLOG_INFO( "Starting {} v{} ..", app_name, version::getVersionInfo() );
 
     if( auto val = get() ) {
-        auto result = DBG( add_numbers( 2, 3 ) ) + DBG( val.value() );
+        auto result = DBG( add_numbers( 2_kHz, 3 ) ) + DBG( val.value() );
     }
     else {
         SPDLOG_ERROR( val.error().to_string() );

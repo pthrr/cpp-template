@@ -32,62 +32,62 @@ using isize = ptrdiff_t;
 
 using str = const char*;
 
-constexpr auto operator"" _i8( unsigned long long int value ) noexcept -> i8
+constexpr auto operator"" _i8( unsigned long long int value ) -> i8
 {
     return static_cast< i8 >( value );
 }
 
-constexpr auto operator"" _i16( unsigned long long int value ) noexcept -> i16
+constexpr auto operator"" _i16( unsigned long long int value ) -> i16
 {
     return static_cast< i16 >( value );
 }
 
-constexpr auto operator"" _i32( unsigned long long int value ) noexcept -> i32
+constexpr auto operator"" _i32( unsigned long long int value ) -> i32
 {
     return static_cast< i32 >( value );
 }
 
-constexpr auto operator"" _i64( unsigned long long int value ) noexcept -> i64
+constexpr auto operator"" _i64( unsigned long long int value ) -> i64
 {
     return static_cast< i64 >( value );
 }
 
-constexpr auto operator"" _u8( unsigned long long int value ) noexcept -> u8
+constexpr auto operator"" _u8( unsigned long long int value ) -> u8
 {
     return static_cast< u8 >( value );
 }
 
-constexpr auto operator"" _u16( unsigned long long int value ) noexcept -> u16
+constexpr auto operator"" _u16( unsigned long long int value ) -> u16
 {
     return static_cast< u16 >( value );
 }
 
-constexpr auto operator"" _u32( unsigned long long int value ) noexcept -> u32
+constexpr auto operator"" _u32( unsigned long long int value ) -> u32
 {
     return static_cast< u32 >( value );
 }
 
-constexpr auto operator"" _u64( unsigned long long int value ) noexcept -> u64
+constexpr auto operator"" _u64( unsigned long long int value ) -> u64
 {
     return static_cast< u64 >( value );
 }
 
-constexpr auto operator"" _f16( long double value ) noexcept -> f16
+constexpr auto operator"" _f16( long double value ) -> f16
 {
     return static_cast< f16 >( value );
 }
 
-constexpr auto operator"" _f32( long double value ) noexcept -> f32
+constexpr auto operator"" _f32( long double value ) -> f32
 {
     return static_cast< f32 >( value );
 }
 
-constexpr auto operator"" _f64( long double value ) noexcept -> f64
+constexpr auto operator"" _f64( long double value ) -> f64
 {
     return static_cast< f64 >( value );
 }
 
-constexpr auto operator"" _f128( long double value ) noexcept -> f128
+constexpr auto operator"" _f128( long double value ) -> f128
 {
     return static_cast< f128 >( value );
 }
@@ -182,6 +182,7 @@ struct [[nodiscard]] Error
 
 template< typename T >
 using Result = std::expected< T, Error >;
+using Status = Result< void >;
 
 template< typename T >
 inline auto Ok( T value ) -> Result< T >
