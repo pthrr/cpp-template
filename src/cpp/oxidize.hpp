@@ -114,7 +114,11 @@ using std::unreachable;
 #define DEBUG_ASSERT( condition ) ( (void)0 )
 #endif
 
+#ifdef NDEBUG
+#define DBG( x ) ( x )
+#else
 #define DBG( x ) oxidize::dbg_impl( ( x ), #x, std::source_location::current() )
+#endif
 
 // ---------------------------------------------------------------------------
 
