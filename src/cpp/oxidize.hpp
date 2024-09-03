@@ -109,9 +109,9 @@ using std::unreachable;
 // ---------------------------------------------------------------------------
 
 #ifdef NDEBUG
-#define DEBUG_ASSERT( condition ) assert( condition )
-#else
 #define DEBUG_ASSERT( condition ) ( (void)0 )
+#else
+#define DEBUG_ASSERT( condition ) assert( condition )
 #endif
 
 #ifdef NDEBUG
