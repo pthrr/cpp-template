@@ -145,7 +145,7 @@ struct [[nodiscard]] Error
         GenericError,
     };
 
-    std::string message;
+    str message;
     ErrorType type;
 
     explicit Error( str msg, ErrorType typ )
@@ -155,7 +155,7 @@ struct [[nodiscard]] Error
     }
 
     // clang-format off
-    static auto to_string( ErrorType typ ) -> std::string {
+    static auto to_string( ErrorType typ ) -> str {
         switch ( typ ) {
             case Error::ErrorType::ArithmeticError: return "ArithmeticError";
             case Error::ErrorType::FloatingPointError: return "FloatingPointError";
