@@ -10,6 +10,8 @@
 #include <stdfloat>
 #include <string>
 
+using namespace std::literals::string_literals;
+
 // ---------------------------------------------------------------------------
 
 using u64 = uint64_t;

@@ -37,7 +37,8 @@ add_compile_options(
   -Wconversion
   -Wsign-conversion
   -Wimplicit-fallthrough)
-add_compile_options(-ftemplate-backtrace-limit=2 -fdiagnostics-color=always -fdiagnostics-show-template-tree)
+add_compile_options(-ftemplate-backtrace-limit=2 -fconcepts-diagnostics-depth=2 -fdiagnostics-color=always
+                    -fdiagnostics-show-template-tree)
 add_compile_options(-fPIE)
 add_link_options(-pie)
 
@@ -45,11 +46,11 @@ message(STATUS "Compiler ID is: ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "Build type is: ${CMAKE_BUILD_TYPE}")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(BUILD_TYPE_LOWER debug)
+  set(BUILD_TYPE_LOWER debug)
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(BUILD_TYPE_LOWER release)
+  set(BUILD_TYPE_LOWER release)
 else()
-    message(FATAL_ERROR "Unsupported build type: ${CMAKE_BUILD_TYPE}")
+  message(FATAL_ERROR "Unsupported build type: ${CMAKE_BUILD_TYPE}")
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
