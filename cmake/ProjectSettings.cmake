@@ -28,6 +28,7 @@ add_compile_options(
   -Wextra
   -pedantic
   -Wshadow
+  -Wunused-result
   -Wnon-virtual-dtor
   -Wold-style-cast
   -Wcast-align

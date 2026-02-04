@@ -3,9 +3,11 @@
 #include <format>
 #include <string_view>
 
-#include "oxidize.hpp"
+#include <common/types.hpp>
 
 namespace version {
+
+using namespace cmn::types;
 
 constexpr i8 PROJECT_VERSION_MAJOR{ 0 };
 constexpr i8 PROJECT_VERSION_MINOR{ 1 };

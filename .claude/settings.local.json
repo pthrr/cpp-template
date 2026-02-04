@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git submodule:*)",
+      "Bash(task build_debug:*)",
+      "Bash(task clean:*)",
+      "Bash(task test_debug:*)"
+    ]
+  }
+}

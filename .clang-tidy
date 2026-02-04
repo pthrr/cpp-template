@@ -1,3 +1,5 @@
+CompilationDatabase: './build'
+
 Checks: >
   bugprone-*,
   cppcoreguidelines-*,

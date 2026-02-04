@@ -1,0 +1,3 @@
+[submodule "src/cpp/common"]
+	path = src/cpp/common
+	url = https://github.com/pthrr/common

@@ -1,1 +1,3 @@
 # cpp-template
+
+- [ ] CMake presets

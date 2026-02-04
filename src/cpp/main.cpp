@@ -2,15 +2,18 @@
 #include <random>
 
 #include <CLI/CLI.hpp>
+#include <common/result.hpp>
+#include <common/types.hpp>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
 
-#include "helpers.hpp"
 #include "oxidize.hpp"
-#include "types.hpp"
 #include "version.hpp"
 
 #include "lib.rs.h"
+
+using namespace cmn::types;
+using namespace cmn::result;
 
 namespace {
 
@@ -22,10 +25,10 @@ auto get() -> Result< i32 >
     i32 num{ distr( gen ) };
 
     if( num % 2 == 0 ) {
-        return Err( "No number available!", Error::ErrorType::OverflowError );
+        return err( "No number available!", Error::ErrorType::OVERFLOW_ERROR );
     }
 
-    return Ok( num );
+    return ok( num );
 }
 
 }
@@ -66,10 +69,10 @@ auto main( int argc, char** argv ) -> int
     SPDLOG_INFO( "Starting {} v{} ..", app_name, version::getVersionInfo() );
 
     if( auto val = get() ) {
-        auto result = DBG( add_numbers( 2_kHz, 3 ) ) + DBG( val.value() );
+        [[maybe_unused]] auto result = DBG( add_numbers( 2000, 3 ) ) + DBG( val.value() );
     }
     else {
-        SPDLOG_ERROR( val.error().to_string() );
+        SPDLOG_ERROR( val.error().toStr() );
     }
 
     SPDLOG_INFO( "Done." );

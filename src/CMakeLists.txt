@@ -27,5 +27,6 @@ set_target_properties(${RUST_LIB_NAME} PROPERTIES
     IMPORTED_LOCATION "${RUST_LIB_PATH}/lib${RUST_LIB_NAME}.a"
     INTERFACE_INCLUDE_DIRECTORIES "${RUST_HEADER_PATH}"
 )
+target_link_libraries(${RUST_LIB_NAME} INTERFACE pthread dl m)
 
 add_subdirectory(cpp)

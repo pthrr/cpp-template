@@ -2,6 +2,9 @@
 
 version: "3"
 
+env:
+  CMAKE_POLICY_VERSION_MINIMUM: "3.5"
+
 tasks:
   default:
     silent: true
@@ -23,7 +26,7 @@ tasks:
       - CMakePresets.json
       - conanfile.*
       - CMakeLists.txt
-      - src/**/CMakeLists.txt
+      # - src/**/CMakeLists.txt
       - include/**/CMakeLists.txt
       - tests/**/CMakeLists.txt
       - external/**/CMakeLists.txt
@@ -42,7 +45,7 @@ tasks:
       - CMakePresets.json
       - conanfile.*
       - CMakeLists.txt
-      - src/**/CMakeLists.txt
+      # - src/**/CMakeLists.txt
       - include/**/CMakeLists.txt
       - tests/**/CMakeLists.txt
       - external/**/CMakeLists.txt
