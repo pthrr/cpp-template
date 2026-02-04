@@ -10,7 +10,7 @@ class Project(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     requires = [
         "catch2/3.4.0",
-        "spdlog/1.12.0",
+        "spdlog/1.17.0",
         "nlohmann_json/3.12.0",
         "cli11/2.6.0",
     ]
